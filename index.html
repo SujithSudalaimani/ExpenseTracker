@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Income Expense Tracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+/>
+
+  </head>
+  <body class="bg-[#080707] text-gray-800 min-h-screen">
+    <h1 class="text-2xl sm:text-3xl text-[#feca57] font-bold text-center mb-4">Income Expense Tracker</h1>
+
+    <div class="flex flex-col lg:flex-row lg:justify-evenly gap-6 px-4">
+        <div class="w-full lg:w-1/2">
+      
+      <div class="p-4 rounded shadow mb-2">
+        <div class="grid justify-center border-4 border-indigo-500">
+        <h2 class="text-xl font-semibold text-white">Your Balance</h2>
+        <p id="balance" class="text-2xl font-bold text-white ml-5">$0.00</p>
+    </div>
+        <div class="flex justify-between mt-4">
+          <div class= "border-4 border-green-600 p-10 ">
+            <h3 class="font-semibold text-green-600">Income</h3>
+            <p id="totalIncome" class="text-green-600">$0.00</p>
+          </div>
+          <div class= "border-4 border-red-600 p-10 ">
+            <h3 class="font-semibold text-red-600">Expense</h3>
+            <p id="totalExpense" class="text-red-600">$0.00</p>
+          </div>
+        </div>
+      </div>
+
+      <form id="transactionForm" class="p-4 rounded shadow space-y-4">
+        <div>
+          <label class="block font-medium text-white">Description</label>
+          <input type="text" id="desc" class="w-full border p-2 rounded" required />
+        </div>
+        <div>
+          <label class="block font-medium text-white">Amount <span class="text-yellow-500">(negative = expense)</span></label>
+          <input type="number" id="amount" class="w-full border p-2 rounded" required />
+        </div>
+        <div>
+          <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Add Transaction</button>
+          <button type="reset" id="resetBtn" class="ml-2 bg-gray-400 text-white px-4 py-2 rounded">Reset</button>
+        </div>
+      </form>
+    </div>
+
+      <div class="w-full lg:w-2/5">
+        <label class="font-medium block mb-2 text-white underline decoration-fuchsia-900">Transaction History</label>
+        <div class="flex gap-4 text-white">
+          <label><input type="radio" name="filter" value="all" checked /> All</label>
+          <label><input type="radio" name="filter" value="income" /> Income</label>
+          <label><input type="radio" name="filter" value="expense" /> Expense</label>
+        </div>
+        <ul id="transactionList" class="bg-white rounded shadow"></ul>
+      </div>
+
+     
+    </div>
+    <script src="script.js"></script>
+    </body>
+    </html>
