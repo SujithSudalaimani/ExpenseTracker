@@ -11,20 +11,18 @@ function updateTransaction(filtered = transactions) {
 
   filtered.forEach((t, index) => {
     const li = document.createElement("li");
-    li.className = `flex justify-between p-2 rounded ${t.amount < 0 ? 'bg-red-100' : 'bg-green-100'}`;
+    li.className = `flex justify-between items-center p-2 rounded ${t.amount < 0 ? 'bg-red-100' : 'bg-green-100'}`;
     li.innerHTML = `
-      <span>${t.desc} - <strong>$${t.amount.toFixed(2)}</strong></span>
+      <span>${t.desc} - <strong>$${Math.abs(t.amount).toFixed(2)}</strong></span>
       <div class="space-x-2">
-       <button onclick="editTransaction(${index})" class="text-blue-500">
-  <i class="fas fa-edit mr-1"></i>
-</button>
-
+        <button onclick="editTransaction(${index})" class="text-blue-500">
+          <i class="fas fa-edit"></i>
+        </button>
         <button onclick="deleteTransaction(${index})" class="text-red-500">
-     <i class="fas fa-trash-alt mr-1"></i>
+          <i class="fas fa-trash-alt"></i>
         </button>
       </div>
     `;
-
     list.appendChild(li);
 
     if (t.amount >= 0) income += t.amount;
@@ -41,7 +39,10 @@ function updateTransaction(filtered = transactions) {
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   const desc = document.getElementById("desc").value;
-  const amount = parseFloat(document.getElementById("amount").value);
+  const amountInput = parseFloat(document.getElementById("amount").value);
+  const type = document.getElementById("type").value;
+  const amount = type === "expense" ? -Math.abs(amountInput) : Math.abs(amountInput);
+
   transactions.push({ desc, amount });
   form.reset();
   updateTransaction();
@@ -55,11 +56,11 @@ function deleteTransaction(index) {
 function editTransaction(index) {
   const t = transactions[index];
   document.getElementById("desc").value = t.desc;
-  document.getElementById("amount").value = t.amount;
+  document.getElementById("amount").value = Math.abs(t.amount);
+  document.getElementById("type").value = t.amount >= 0 ? "income" : "expense";
   deleteTransaction(index);
 }
 
-// Filter
 
 document.querySelectorAll("input[name='filter']").forEach((radio) => {
   radio.addEventListener("change", () => {
