@@ -16,8 +16,10 @@
   <div class="flex flex-col lg:flex-row lg:justify-evenly gap-6 px-4">
     <div class="w-full lg:w-1/2">
       <div class="p-4 rounded shadow mb-2 border-4 border-indigo-500">
-        <h2 class="text-xl font-semibold text-white">Your Balance</h2>
-        <p id="balance" class="text-2xl font-bold text-white ml-5">$0.00</p>
+        <div class="flex flex-col items-center text-center mb-4">
+            <h2 class="text-xl font-semibold text-white">Your Balance</h2>
+            <p id="balance" class="text-2xl font-bold text-white">$0.00</p>
+          </div>
         <div class="flex justify-between mt-4">
           <div class="border-4 border-green-600 p-4 text-center w-1/2 mr-2">
             <h3 class="font-semibold text-green-600">Income</h3>
@@ -30,7 +32,6 @@
         </div>
       </div>
 
-      <!-- Transaction Form  -->
       <form id="transactionForm" class="p-4 rounded shadow space-y-4">
         <div>
           <label class="block font-medium text-white">Description</label>
